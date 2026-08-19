@@ -68,17 +68,32 @@ Remove rows with no tattoo data:
 
 ```{r}
 
+nba_stattoos <- nba_stattoos |> 
+  filter(
+  !is.na(tattoos)
+)
+
 ```
 
 Is the average height of tattoo'd players taller than the inkless?
 
 ```{r}
 
+nba_stattoos |> 
+  group_by(tattoos) |> 
+  summarise(avg_height = mean(player_height),
+            avg_points = mean(pts), 
+            avg_net_rating = mean(net_rating))
+
 ```
 
 Which tattooed player had the highest pts per game?
 
 ```{r}
+
+nba_stattoos |> 
+  filter(tattoos == TRUE) |> 
+  arrange(desc(pts))
 
 ```
 
