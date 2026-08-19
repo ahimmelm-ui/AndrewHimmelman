@@ -1,0 +1,89 @@
+---
+title: "NBA tattoos matter?"
+author: "Me"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r}
+# install.packages("fivethirtyeight") # delete this line after installed!!
+library(fivethirtyeight)
+library(tidyverse)
+```
+
+Reading some NBA player stats
+
+```{r}
+# Loading nba_tattoos data
+#     (from fivethirtyeight pkg)
+data("nba_tattoos")
+
+# Loading nba season stats
+#     (from https://www.kaggle.com/datasets/justinas/nba-players-data)
+nba_season_stats_url <- "https://docs.google.com/spreadsheets/d/1ejAeViZ9Oz4ZgBKi65wdeSTzrdA3aHgDEhHmFGWuozM/export?format=csv"
+
+nba_season_stats <- read.csv(nba_season_stats_url)
+```
+
+Do a couple "get to know you" type things with `nba_tattoos` and `nba_season_stats`:
+
+```{r}
+
+nba_season_stats |> 
+  group_by(season) |> 
+  summarise(n()) |> 
+  arrange(season)
+
+```
+
+How do I restrict analysis to just the 2021-22 season?
+
+```{r}
+
+nba_season_stats_21 <- nba_season_stats |> 
+  filter(season == "2021-22")
+
+
+```
+
+How to properly combine the 2 data sources?
+
+```{r}
+
+nba_stattoos <- nba_season_stats_21 |> 
+  inner_join(nba_tattoos,
+             by = "player_name")
+
+nba_stattoos |> 
+  head()
+```
+
+How many rows didn't match up to our tattoo data?
+
+```{r}
+
+```
+
+Remove rows with no tattoo data:
+
+```{r}
+
+```
+
+Is the average height of tattoo'd players taller than the inkless?
+
+```{r}
+
+```
+
+Which tattooed player had the highest pts per game?
+
+```{r}
+
+```
+
+Which non-tattooed player had the highest pts per game?
+
+```{r}
+
+```
