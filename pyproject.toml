@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "nflfastpy>=0.0.14",
     "pandas>=3.0.5",
     "pymysql>=1.2.0",
     "sqlalchemy>=2.0.52",
