@@ -1,0 +1,91 @@
+---
+title: "Luxury jelly A/B test"
+author: "Us"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+```
+
+## The setup
+
+* You are an analyst at a luxury jelly e-commerce retailer with a “Jelly of the Month Club.”
+* The retailer is testing whether introducing a testimonial from Clark Griswold on the sidebar of the webpage will (1) increase conversions to the JMC and (2) increase the average cart amount of those who purchase.
+
+<p align='center'>
+![](https://i0.wp.com/scng-dash.digitalfirstmedia.com/wp-content/uploads/2019/11/LDN-L-CHEVYCHASE-1124-02.jpg?fit=620%2C9999px&ssl=1){width=150px}
+<br>
+"I love this luxury jelly" - Clark Griswold... prolly
+</p>
+
+## Getting to know the data
+
+Read in the `banner_ad_results.csv`
+
+```{r}
+
+jelly <- read.csv("banner_ad_results.csv")
+
+head(jelly)
+
+```
+
+Do some things to get to know what data we have available:
+
+* as a whole
+* some stuff about individual columns
+
+```{r}
+
+```
+
+Our data has been dirty at this company before with duplicate transaction ids.  This should be unique for every transaction (row). Prove that we have only unique `trans_id`s
+
+```{r}
+
+```
+
+How many `trans_id`s are there per `group`?
+
+```{r}
+
+```
+
+## Analyzing the effects of the ad
+
+**Is the testimonial ad worth it based on *<u>cart amount alone</u>*?**
+
+Some additional context:
+
+* The jelly site sees about 6500 transactions per month.
+* The monthly cost to keep the testimonial is $500
+
+```{r}
+
+```
+
+*What assumptions have to be made to make this recommendation?*
+
+**Which `group` had a higher conversion rate to the jelly of the month club?**
+
+Descriptive statistics:
+
+```{r}
+
+```
+
+Visuals:
+
+```{r}
+
+```
+
+Inferential statistics:
+
+```{r}
+
+```
+
+*What are some things to ask about to give a better recommendation if this ad is worth it across these two measurables of cart amount and conversion rate?*
