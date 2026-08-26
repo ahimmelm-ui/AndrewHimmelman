@@ -7,6 +7,7 @@ output: html_document
 
 ```{r}
 library(tidyverse)
+library(ggplot2)
 ```
 
 ## The setup
@@ -39,17 +40,34 @@ Do some things to get to know what data we have available:
 
 ```{r}
 
+mean(jelly$convert)
+
+mean(jelly$cart_amount)
+sd(jelly$cart_amount)
+
+hist(jelly$cart_amount)
+
 ```
 
 Our data has been dirty at this company before with duplicate transaction ids.  This should be unique for every transaction (row). Prove that we have only unique `trans_id`s
 
 ```{r}
 
+jelly |> 
+  group_by(trans_id) |> 
+  summarise(count = n()) |> 
+  arrange(desc(count))
+
+
 ```
 
 How many `trans_id`s are there per `group`?
 
 ```{r}
+
+jelly |> 
+  group_by(group) |> 
+  summarise(n = n())
 
 ```
 
@@ -63,6 +81,16 @@ Some additional context:
 * The monthly cost to keep the testimonial is $500
 
 ```{r}
+
+mean = jelly |> 
+  group_by(group) |> 
+  summarise(
+    avg_cart_amount = mean(cart_amount),
+    avg_convert = mean(convert)
+  )
+
+print(45.76*6500)
+print(46.08*6500)
 
 ```
 
@@ -79,7 +107,7 @@ Descriptive statistics:
 Visuals:
 
 ```{r}
-
+ggplot(jelly, aes(x = group, y = cart_amount)) + geom_boxplot()
 ```
 
 Inferential statistics:
